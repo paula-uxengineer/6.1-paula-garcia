@@ -1,28 +1,22 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "commonjs",
+    "module": "CommonJS",
     "sourceMap": true,
     "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "./_dist",
     "strict": true,
     "esModuleInterop": true,
     "noEmitOnError": false,
     "removeComments": true,
     "baseUrl": "./",
     "typeRoots": ["./node_modules/@types"],
-    "types": ["jest"],
+    "types": ["node", "jest"],
     "paths": {
       "*": ["./src/*"]
     }
   },
 
   "include": ["./src/**/*", "./generated/**/*", "express.d.ts"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".src/__tests__",
-    "prisma/generated",
-    "prisma/migrations"
-  ]
+  "exclude": ["node_modules", "dist", "./src/_tests", "prisma/generated", "prisma/migrations"]
 }
