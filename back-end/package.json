@@ -5,13 +5,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
+    "prisma": "npx prisma init",
+    "prisma-generate": "npx prisma generate",
+    "prisma-migrate": "npx prisma migrate dev",
     "docker": "docker compose up -d",
     "build": "tsc",
     "start": "node ./_dist/index.js",
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "node --env-file=.env --import=tsx --watch src/index.ts"
   },
   "keywords": [],
   "author": "Paula Garcia",
@@ -22,7 +22,6 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
-    "mongodb-memory-server": "^9.1.6",
     "mongoose": "^8.1.0",
     "supertest": "^6.3.4"
   },
@@ -41,7 +40,8 @@
     "prettier": "^3.2.5",
     "prisma": "^5.8.1",
     "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.3",
+    "typescript": "^5.4.5"
   }
 }

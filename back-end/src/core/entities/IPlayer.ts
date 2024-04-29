@@ -1,5 +1,7 @@
+import { Throw } from '@prisma/client';
 export interface IPlayer {
   id: number;
   name: string;
-  createdAt: Date;
+  creationDate: Date;
+  throws: Partial<Throw>[];
 }

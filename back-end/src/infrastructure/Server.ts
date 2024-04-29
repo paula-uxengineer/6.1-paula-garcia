@@ -1,17 +1,17 @@
 import express, { Application } from 'express';
-import config from '../../config/index';
-import routerGames from '../../adapters/routes/diceGameRoutes';
+import config from '../config/configDotenv';
+import routerGames from '../adapters/routes/diceGameRoutes';
 
 class Server {
   private app: Application;
-  private port: string;
+  private port: number;
   private path = {
     games: '/games'
   };
 
   constructor() {
     this.app = express();
-    this.port = config.port as string;
+    this.port = config.port;
     this.routes();
   }
 

@@ -1,4 +1,4 @@
-import Server from 'core/services/Server';
+import Server from 'infrastructure/Server';
 
 const server = new Server();
 

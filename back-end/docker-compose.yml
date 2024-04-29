@@ -5,23 +5,21 @@ services:
     image: mysql:latest
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: 123456789
       MYSQL_DATABASE: my-mysql-db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
     ports:
-      - "3306:3306"
+      - '3306:3306'
     volumes:
-      - ./back-end/infrastructure/databases/mysql:/var/lib/mysql
+      - ./dockerCompose/mysql:/var/lib/mysql
 
   mongodb:
     image: mongo:latest
     container_name: mongo-db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: 123456789
       MONGO_INITDB_DATABASE: my-mongo-db
     ports:
-      - "27017:27017"
+      - '27017:27017'
     volumes:
-      - ./back-end/infrastructure/databases/mongodb:/data/db
+      - ./dockerCompose/mongodb:/data/db
