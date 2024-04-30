@@ -1,7 +1,8 @@
-import { Throw } from '@prisma/client';
+import { IThrow } from './iThrow';
 export interface IPlayer {
   id: number;
   name: string;
   creationDate: Date;
-  throws: Partial<Throw>[];
+  successRate?: number | null;
+  throws?: IThrow[];
 }
