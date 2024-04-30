@@ -3,6 +3,7 @@ CREATE TABLE `Player` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `creationDate` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `successRate` DOUBLE NULL,
 
     UNIQUE INDEX `Player_name_key`(`name`),
     PRIMARY KEY (`id`)

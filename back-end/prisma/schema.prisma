@@ -17,6 +17,7 @@ model Player {
   id            Int @id @default(autoincrement())
   name          String @unique
   creationDate  DateTime @default(now())
+  successRate   Float?
   throws        Throw[]
 }
 
