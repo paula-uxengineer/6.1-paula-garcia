@@ -23,9 +23,9 @@ model Player {
 
 model Throw {
   id            Int @id @default(autoincrement())
-  playerId      Int
   dice1         Int
   dice2         Int
   winner        Boolean
   player        Player @relation(fields: [playerId], references: [id])
+  playerId      Int
 }

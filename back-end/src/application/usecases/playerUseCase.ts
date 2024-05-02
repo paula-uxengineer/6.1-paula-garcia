@@ -1,10 +1,10 @@
 import { IPlayer } from 'core/entities/iPlayer';
 import { IPlayerRepository } from 'core/repositories/iPlayerRepository';
 import { IThrow } from 'core/entities/iThrow';
-import { PlayerRepository } from 'infrastructure/mysql/playerRepository';
+import { PlayerRepository } from '../../infrastructure/mysql/playerRepository';
 
 export class PlayerUseCase {
-  constructor(private playerRepository: IPlayerRepository) {}
+  constructor(private playerRepository: PlayerRepository) {}
 
   async registerPlayer(name: string): Promise<IPlayer> {
     try {
@@ -37,12 +37,12 @@ export class PlayerUseCase {
   }
 }
 
-const playerUseCase = new PlayerUseCase(new PlayerRepository());
-playerUseCase
-  .registerPlayer('Pumba')
-  .then((player) => {
-    console.log('Player registered:', player);
-  })
-  .catch((error) => {
-    console.error('Error registering player:', error);
-  });
+// const playerUseCase = new PlayerUseCase(new PlayerRepository());
+// playerUseCase
+//   .getPlayerThrows(14)
+//   .then((player) => {
+//     console.log('Player registered:', player);
+//   })
+//   .catch((error) => {
+//     console.error('Error registering player:', error);
+//   });

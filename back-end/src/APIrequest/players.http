@@ -1,0 +1,41 @@
+###
+### API de Jugadores
+###
+
+# Crear un nuevo jugador
+POST http://localhost:3000/players
+Content-Type: application/json
+
+{
+  "name": "Nombre del Jugador"
+}
+
+# Actualizar el nombre de un jugador existente
+PUT http://localhost:3000/players/123
+Content-Type: application/json
+
+{
+  "name": "Nuevo Nombre del Jugador"
+}
+
+# Obtener todos los jugadores
+GET http://localhost:3000/players
+
+# Obtener un jugador específico por su ID
+GET http://localhost:3000/players/123
+
+# Eliminar un jugador existente por su ID
+DELETE http://localhost:3000/players/123
+
+# Obtener todas las tiradas de un jugador específico por su ID
+GET http://localhost:3000/players/123/throws
+
+# Registrar una nueva tirada para un jugador específico por su ID
+POST http://localhost:3000/players/123/throws
+Content-Type: application/json
+
+{
+  "dice1": 4,
+  "dice2": 3,
+  "winner": true
+}

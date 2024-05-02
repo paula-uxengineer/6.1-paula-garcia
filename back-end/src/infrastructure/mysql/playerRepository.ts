@@ -23,8 +23,8 @@ export class PlayerRepository implements IPlayerRepository {
       });
       return createPlayer;
     } catch (error) {
-      console.error('Error creating player:', error);
-      throw new Error('Error creating player');
+      console.error('Error creating player on database:', error);
+      throw new Error('Error creating player on database');
     }
   }
 
@@ -47,8 +47,8 @@ export class PlayerRepository implements IPlayerRepository {
       });
       return updatedPlayer;
     } catch (error) {
-      console.error('Error updating player:', error);
-      throw new Error('Error updating player');
+      console.error('Error updating player on database:', error);
+      throw new Error('Error updating player on database');
     }
   }
 
@@ -60,8 +60,8 @@ export class PlayerRepository implements IPlayerRepository {
         }
       });
     } catch (error) {
-      console.error('Error finding all players:', error);
-      throw new Error('Error finding all players');
+      console.error('Error finding all players: on database', error);
+      throw new Error('Error finding all players on database');
     }
   }
 
@@ -73,7 +73,7 @@ export class PlayerRepository implements IPlayerRepository {
       });
 
       if (!player) {
-        throw new Error('Player not founded.');
+        throw new Error('Player not founded on database.');
       }
 
       const throws = player.throws;
@@ -95,8 +95,8 @@ export class PlayerRepository implements IPlayerRepository {
 
       return { throws, successRate: roundedSuccessRate };
     } catch (error) {
-      console.error('Error fetching player throws:', error);
-      throw new Error('Error fetching player throws');
+      console.error('Error fetching player throws on database:', error);
+      throw new Error('Error fetching player throws on database');
     }
   }
 }
@@ -123,24 +123,24 @@ export class PlayerRepository implements IPlayerRepository {
 //     console.error('Error al players:', error);
 //   });
 
-const player = {
-  id: 5,
-  name: 'Jugador1',
-  creationDate: new Date('2024-04-30'),
-  successRate: 0.75,
-  throws: [
-    { id: 10, dice1: 4, dice2: 3, winner: true },
-    { id: 20, dice1: 2, dice2: 3, winner: false },
-    { id: 30, dice1: 1, dice2: 3, winner: false }
-  ]
-};
+// const player = {
+//   id: 5,
+//   name: 'Homer Simpson',
+//   creationDate: new Date('2024-04-30'),
+//   successRate: 0.75,
+//   throws: [
+//     { id: 10, dice1: 4, dice2: 3, winner: true },
+//     { id: 20, dice1: 2, dice2: 3, winner: false },
+//     { id: 30, dice1: 1, dice2: 3, winner: false }
+//   ]
+// };
 
-const playerRepo = new PlayerRepository();
-playerRepo
-  .registerPlayer('')
-  .then((result) => {
-    console.log('Player:', result);
-  })
-  .catch((error) => {
-    console.error('Error player::', error);
-  });
+// const playerRepo = new PlayerRepository();
+// playerRepo
+//   .createPlayer(player)
+//   .then((result) => {
+//     console.log('Player:', result);
+//   })
+//   .catch((error) => {
+//     console.error('Error player::', error);
+//   });

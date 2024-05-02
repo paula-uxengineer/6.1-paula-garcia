@@ -8,9 +8,9 @@ POST http://localhost:3000/players
 Content-Type: application/json
 
 {
-"name": "Jugador1",
+"name": "Pumba",
 "creationDate": "2024-04-30T12:00:00Z",
-"successRate": 0.75
+"successRate": 5.75
 }
 
 ### PUT /players/{id}: Modifica el nombre del jugador/a
