@@ -1,5 +1,5 @@
 {
-  "type": "module",
+  "type": "commonjs",
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
@@ -9,9 +9,10 @@
     "prisma-generate": "npx prisma generate",
     "prisma-migrate": "npx prisma migrate dev",
     "docker": "docker compose up -d",
-    "build": "tsc",
+    "build": "tsc && node change-extension.js",
     "start": "node ./_dist/index.js",
-    "dev": "node --env-file=.env --import=tsx --watch src/index.ts"
+    "dev": "node --env-file=.env --import=tsx --watch src/index.ts",
+    "test:playerRepo": "jest --testPathPattern=src/_tests/playerRepository.test.ts"
   },
   "keywords": [],
   "author": "Paula Garcia",

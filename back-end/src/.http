@@ -1,0 +1,23 @@
+### GET /players: Retorna el listado de todos los jugadores del sistema con su porcentaje de éxito
+
+GET http://localhost:3000/players
+
+### POST /players: Crea un jugador/a
+
+POST http://localhost:3000/players
+Content-Type: application/json
+
+{
+"name": "Jugador1",
+"creationDate": "2024-04-30T12:00:00Z",
+"successRate": 0.75
+}
+
+### PUT /players/{id}: Modifica el nombre del jugador/a
+
+PUT http://localhost:3000/players/1
+Content-Type: application/json
+
+{
+"newName": "NuevoNombre"
+}

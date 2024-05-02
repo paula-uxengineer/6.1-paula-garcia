@@ -1,9 +1,10 @@
-import { IPlayer } from 'core/entities/iPlayer';
+import { IPlayer } from '../entities/iPlayer';
+import { IThrow } from '../entities/iThrow';
 
 export interface IPlayerRepository {
-  findAll(): Promise<IPlayer[]>;
-  findById(id: number): Promise<IPlayer | null>;
-  create(player: IPlayer): Promise<IPlayer>;
-  update(id: number, player: Partial<IPlayer>): Promise<IPlayer | null>;
-  delete(id: number): Promise<boolean>;
+  createPlayer(player: IPlayer): Promise<IPlayer>;
+  registerPlayer(name: string): Promise<IPlayer>;
+  updatePlayerName(id: number, name: string): Promise<IPlayer | null>;
+  findAllPlayers(): Promise<IPlayer[]>;
+  deletePlayer(id: number): Promise<boolean>;
 }

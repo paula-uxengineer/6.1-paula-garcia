@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "CommonJS",
+    "module": "commonJS",
     "sourceMap": true,
     "rootDir": "./src",
     "outDir": "./_dist",
@@ -18,5 +18,5 @@
   },
 
   "include": ["./src/**/*", "./generated/**/*", "express.d.ts"],
-  "exclude": ["node_modules", "dist", "./src/_tests", "prisma/generated", "prisma/migrations"]
+  "exclude": ["node_modules", "dist", "prisma/generated", "prisma/migrations"]
 }
