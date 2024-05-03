@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../../prisma/generator/client';
 import { IThrow } from '../../core/entities/iThrow';
 import { IGameRepository } from 'core/repositories/iGameRepository';
 

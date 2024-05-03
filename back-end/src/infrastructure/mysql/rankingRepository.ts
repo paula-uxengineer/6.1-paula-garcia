@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../../prisma/generator/client';
 import { IRankingRepository } from '../../core/repositories/iRankingRepository';
 import { IPlayer } from 'core/entities/iPlayer';
 

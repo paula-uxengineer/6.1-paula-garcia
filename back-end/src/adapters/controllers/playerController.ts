@@ -6,7 +6,7 @@ export class PlayerController {
 
   async registerPlayer(req: Request, res: Response): Promise<void> {
     try {
-      const { name } = req.body;
+      const name = req.body.name;
       const player = await this.playerUseCase.registerPlayer(name || 'ANONYMOUS');
       res.status(201).json(player);
     } catch (error) {

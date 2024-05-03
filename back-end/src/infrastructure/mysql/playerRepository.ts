@@ -1,14 +1,18 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../../prisma/generator/client';
 import { IPlayer } from '../../core/entities/iPlayer';
 import { IPlayerRepository } from '../../core/repositories/iPlayerRepository';
 import { IThrow } from 'core/entities/iThrow';
 
-const prisma = new PrismaClient();
-
 export class PlayerRepository implements IPlayerRepository {
+  prisma;
+
+  constructor() {
+    this.prisma = new PrismaClient();
+  }
+
   async createPlayer(player: IPlayer): Promise<IPlayer> {
     try {
-      const createPlayer = await prisma.player.create({
+      const createPlayer = await this.prisma.player.create({
         data: {
           name: player.name || 'ANONIMOUS',
           creationDate: player.creationDate,
@@ -30,7 +34,7 @@ export class PlayerRepository implements IPlayerRepository {
 
   async registerPlayer(name: string): Promise<IPlayer> {
     console.log('name player:', name);
-    return await prisma.player.create({
+    return await this.prisma.player.create({
       data: {
         name: name || 'ANONIMOUS'
       }
@@ -39,7 +43,7 @@ export class PlayerRepository implements IPlayerRepository {
 
   async updatePlayerName(id: number, name: string): Promise<IPlayer | null> {
     try {
-      const updatedPlayer = await prisma.player.update({
+      const updatedPlayer = await this.prisma.player.update({
         where: { id },
         data: {
           name: name
@@ -54,7 +58,7 @@ export class PlayerRepository implements IPlayerRepository {
 
   async findAllPlayers(): Promise<IPlayer[]> {
     try {
-      return await prisma.player.findMany({
+      return await this.prisma.player.findMany({
         include: {
           throws: true
         }
@@ -67,36 +71,32 @@ export class PlayerRepository implements IPlayerRepository {
 
   async getPlayerThrows(playerId: number): Promise<{ throws: IThrow[]; successRate: number }> {
     try {
-      const player = await prisma.player.findUnique({
-        where: { id: playerId },
-        include: { throws: true }
+      const playerThrows = await this.prisma.throw.findMany({
+        where: {
+          playerId: playerId // Filtrar por playerId específico
+        }
       });
 
-      if (!player) {
-        throw new Error('Player not founded on database.');
-      }
-
-      const throws = player.throws;
-      const totalThrows = throws.length;
+      const totalThrows = playerThrows.length;
       let totalWins = 0;
 
-      // total win throws
-      throws.forEach((throwItem) => {
+      // Calcular el número total de tiradas ganadoras
+      playerThrows.forEach((throwItem) => {
         if (throwItem.winner) {
           totalWins++;
         }
       });
 
-      // successRate:
+      // Calcular la tasa de éxito
       const successRate = totalThrows > 0 ? (totalWins / totalThrows) * 100 : 0;
 
-      // round decimals to 00.00
+      // Redondear la tasa de éxito a dos decimales
       const roundedSuccessRate = Math.round(successRate * 100) / 100;
 
-      return { throws, successRate: roundedSuccessRate };
+      return { throws: playerThrows, successRate: roundedSuccessRate };
     } catch (error) {
-      console.error('Error fetching player throws on database:', error);
-      throw new Error('Error fetching player throws on database');
+      console.error('Error fetching player throws from the database:', error);
+      throw new Error('Error fetching player throws from the database');
     }
   }
 }
