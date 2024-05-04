@@ -10,4 +10,4 @@ import 'dotenv/config';
 export default {
   port: Number(process.env.PORT) || 3000
 };
-console.log(typeof Number(process.env.PORT));
+// console.log(typeof Number(process.env.PORT));

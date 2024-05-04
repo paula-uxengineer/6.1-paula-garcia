@@ -34,7 +34,9 @@ export class PlayerController {
   async getPlayerThrows(req: Request, res: Response): Promise<void> {
     try {
       const { playerId } = req.params;
-      const { throws, successRate } = await this.playerUseCase.getPlayerThrows(parseInt(playerId));
+      const { throws, successRate } = await this.playerUseCase.findThrowsAndSuccessRateByPlayerId(
+        parseInt(playerId)
+      );
       res.status(200).json({ throws, successRate });
     } catch (error) {
       console.error('Error fetching player throws:', error);

@@ -4,6 +4,7 @@ import { PlayerUseCase } from '../../application/usecases/playerUseCase';
 import { PlayerRepository } from '../../infrastructure/mysql/playerRepository';
 
 const playerRouter = express.Router();
+
 const playerRepository = new PlayerRepository();
 const playerUseCase = new PlayerUseCase(playerRepository);
 const playerController = new PlayerController(playerUseCase);

@@ -5,9 +5,3 @@ export interface IThrow {
   winner: boolean;
   playerId?: number;
 }
-
-// export interface IAllThrows {
-//     id: number,
-//     name: string,
-//     successRate: number;
-// }

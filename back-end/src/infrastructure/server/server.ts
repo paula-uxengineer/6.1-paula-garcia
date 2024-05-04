@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import config from '../../config/configDotenv';
 import playerRouter from '../../adapters/routes/playerRoutes';
-// import { json, urlencoded } from 'body-parser';
+// import gameRouter from '../../adapters/routes/gameRoutes';
 
 class Server {
   public app: express.Application;
@@ -17,6 +17,7 @@ class Server {
 
   public routes() {
     this.app.use('/players', playerRouter);
+    // this.app.use('/games', gameRouter);
   }
 
   public listen() {

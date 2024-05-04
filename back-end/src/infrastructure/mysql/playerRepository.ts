@@ -49,6 +49,7 @@ export class PlayerRepository implements IPlayerRepository {
           name: name
         }
       });
+      console.log('update name: ', name);
       return updatedPlayer;
     } catch (error) {
       console.error('Error updating player on database:', error);
@@ -69,7 +70,9 @@ export class PlayerRepository implements IPlayerRepository {
     }
   }
 
-  async getPlayerThrows(playerId: number): Promise<{ throws: IThrow[]; successRate: number }> {
+  async findThrowsAndSuccessRateByPlayerId(
+    playerId: number
+  ): Promise<{ throws: IThrow[]; successRate: number }> {
     try {
       const playerThrows = await this.prisma.throw.findMany({
         where: {
@@ -99,6 +102,26 @@ export class PlayerRepository implements IPlayerRepository {
       throw new Error('Error fetching player throws from the database');
     }
   }
+
+  // async findThrowsAndSuccessRateByPlayerId(
+  //   playerId: number
+  // ): Promise<{ throws: IThrow[]; successRate: number }> {
+  //   try {
+  //     // Busca todas las tiradas del jugador por su ID
+  //     const throws = await this.prisma.throw.findMany({
+  //       where: { playerId }
+  //     });
+
+  //     // Calcula el porcentaje de éxito del jugador
+  //     const successfulThrows = throws.filter((t) => t.winner);
+  //     const successRate = successfulThrows.length / throws.length;
+
+  //     return { throws, successRate };
+  //   } catch (error) {
+  //     console.error('Error finding throws and success rate by player id:', error);
+  //     throw new Error('Error finding throws and success rate by player id');
+  //   }
+  // }
 }
 
 // const player = {
