@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { GameController } from '../controllers/gameController';
 import { GameUseCase } from '../../application/usecases/gameUseCase';
-import { GameRepository } from 'infrastructure/mysql/gameRepository';
+import { GameRepository } from '../../infrastructure/mysql/gameRepository';
 
 const gameRouter = Router();
 

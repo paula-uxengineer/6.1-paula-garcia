@@ -17,6 +17,6 @@
     }
   },
 
-  "include": ["./src/**/*", "./generated/**/*", "express.d.ts"],
+  "include": ["./src/**/*", "./generated/**/*", "express.d.ts", "./src/_test/**/*.ts"],
   "exclude": ["node_modules", "dist", "prisma/generated", "prisma/migrations"]
 }

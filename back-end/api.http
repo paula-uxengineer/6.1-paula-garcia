@@ -1,0 +1,44 @@
+### API dice game ###
+
+# ------------------/players-----------------------
+
+# Create new player
+POST http://localhost:3000/players HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Homer Simpson"
+}
+
+# Rename player:
+PUT http://localhost:3000/players/1
+content-type: application/json
+
+{
+  "name": "Bart Simpson" 
+}
+
+# Get all players and their success rates
+GET http://localhost:3000/players/1
+
+
+# ------------------/games-----------------------
+
+# Create a new throw by player id
+POST http://localhost:3000/games/1
+content-type: application/json
+
+{
+  "playerId": 1,
+  "dice1": 4,
+  "dice2": 3,
+  "winner": true
+}
+
+# Find throws by specific player
+GET http://localhost:3000/games/1
+
+# Delete all throws by player id
+DELETE http://localhost:3000/games/1
+
+# ------------------/games-----------------------

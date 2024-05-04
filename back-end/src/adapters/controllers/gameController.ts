@@ -29,7 +29,7 @@ export class GameController {
   async findThrowByPlayerId(req: Request, res: Response): Promise<void> {
     try {
       const { playerId } = req.params;
-      const throws = await this.throwUseCase.findThrowByPlayerId(Number(playerId));
+      const throws = await this.throwUseCase.findThrowByPlayerId(parseInt(playerId));
       res.status(200).json(throws);
     } catch (error) {
       console.error('Error finding throw by player id:', error);
