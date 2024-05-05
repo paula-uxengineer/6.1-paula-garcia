@@ -1,5 +1,5 @@
 import { PrismaClient } from '../../../prisma/generator/client';
-import { IRankingRepository } from '../../core/repositories/iRankingRepository';
+import { IRankingRepository } from '../../core/gateaway/iRankingRepository';
 import { IPlayer } from 'core/entities/iPlayer';
 
 const prisma = new PrismaClient();

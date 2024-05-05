@@ -1,6 +1,6 @@
 import { PrismaClient } from '../../../prisma/generator/client';
 import { IPlayer } from '../../core/entities/iPlayer';
-import { IPlayerRepository } from '../../core/repositories/iPlayerRepository';
+import { IPlayerRepository } from '../../core/gateaway/iPlayerRepository';
 import { IThrow } from 'core/entities/iThrow';
 
 export class PlayerRepository implements IPlayerRepository {

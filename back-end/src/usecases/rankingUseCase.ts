@@ -1,5 +1,5 @@
-import { IRankingRepository } from '../../core/repositories/iRankingRepository';
-import { IPlayer } from '../../core/entities/iPlayer';
+import { IRankingRepository } from '../core/gateaway/iRankingRepository';
+import { IPlayer } from '../core/entities/iPlayer';
 
 export class RankingUseCase {
   constructor(private readonly rankingRepository: IRankingRepository) {}

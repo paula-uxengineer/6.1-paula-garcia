@@ -1,4 +1,4 @@
-import { Server } from './infrastructure/server/server';
+import { Server } from './frameworks/server/server';
 
 const server = new Server();
 

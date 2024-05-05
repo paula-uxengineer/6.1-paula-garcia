@@ -1,6 +1,6 @@
-import { IPlayerUseCase } from 'core/repositories/iPlayerUseCase';
-import { IPlayer } from '../../core/entities/iPlayer';
-import { IPlayerRepository } from '../../core/repositories/iPlayerRepository';
+import { IPlayerUseCase } from 'core/presenters/iPlayerUseCase';
+import { IPlayer } from '../core/entities/iPlayer';
+import { IPlayerRepository } from '../core/gateaway/iPlayerRepository';
 import { IThrow } from 'core/entities/iThrow';
 
 export class PlayerUseCase implements IPlayerUseCase {

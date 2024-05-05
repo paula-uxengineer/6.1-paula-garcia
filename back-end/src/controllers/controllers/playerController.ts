@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PlayerUseCase } from 'application/usecases/playerUseCase';
+import { PlayerUseCase } from 'usecases/playerUseCase';
 
 export class PlayerController {
   constructor(private playerUseCase: PlayerUseCase) {}

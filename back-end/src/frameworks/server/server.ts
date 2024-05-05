@@ -1,8 +1,8 @@
 import express from 'express';
 import config from '../../config/configDotenv';
-import playerRouter from '../../adapters/routes/playerRoutes';
-import gameRouter from '../../adapters/routes/gameRoutes';
-import rankingRouter from '../../adapters/routes/rankingRoutes';
+import playerRouter from '../../controllers/routes/playerRoutes';
+import gameRouter from '../../controllers/routes/gameRoutes';
+import rankingRouter from '../../controllers/routes/rankingRoutes';
 
 class Server {
   public app: express.Application;

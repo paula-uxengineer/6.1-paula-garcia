@@ -1,5 +1,5 @@
-import { IThrow } from '../../core/entities/iThrow';
-import { IGameUseCase } from 'core/repositories/iGameUseCase';
+import { IThrow } from '../core/entities/iThrow';
+import { IGameUseCase } from 'core/presenters/iGameUseCase';
 
 export class GameUseCase implements IGameUseCase {
   constructor(private gameRepository: IGameUseCase) {}

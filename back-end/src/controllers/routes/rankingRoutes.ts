@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { RankingController } from '../controllers/rankingController';
-import { RankingUseCase } from '../../application/usecases/rankingUseCase';
-import { RankingRepository } from '../../infrastructure/mysql/rankingRepository';
+import { RankingUseCase } from '../../usecases/rankingUseCase';
+import { RankingRepository } from '../../frameworks/mysql/rankingRepository';
 
 const rankingRouter = Router();
 

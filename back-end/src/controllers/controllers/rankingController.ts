@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { RankingUseCase } from '../../../src/application/usecases/rankingUseCase';
+import { RankingUseCase } from '../../usecases/rankingUseCase';
 
 export class RankingController {
   constructor(private readonly rankingUseCase: RankingUseCase) {}

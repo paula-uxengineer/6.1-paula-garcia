@@ -1,7 +1,7 @@
 import express from 'express';
 import { PlayerController } from '../controllers/playerController';
-import { PlayerUseCase } from '../../application/usecases/playerUseCase';
-import { PlayerRepository } from '../../infrastructure/mysql/playerRepository';
+import { PlayerUseCase } from '../../usecases/playerUseCase';
+import { PlayerRepository } from '../../frameworks/mysql/playerRepository';
 
 const playerRouter = express.Router();
 

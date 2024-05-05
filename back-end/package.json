@@ -12,7 +12,6 @@
     "build:usecases": "tsc && node _dist/application/usecases/player/playerUseCase.js",
     "build:repositories": "tsc && node _dist/infrastructure/mysql/playerRepository.js",
     "start": "node _dist/index.js",
-    "dev2": "node --env-file=.env --import=tsx --watch src/index.ts",
     "dev": "nodemon src/index.ts",
     "test:repository": "jest ./src/_tests/repositories/playerRepository.test.ts"
   },

@@ -1,4 +1,4 @@
-import { IPlayer } from '../../core/entities/iPlayer';
+import { IPlayer } from '../entities/iPlayer';
 
 export interface IRankingUseCase {
   listRanking(): Promise<IPlayer[]>;
