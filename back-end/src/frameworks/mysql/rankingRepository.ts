@@ -30,11 +30,16 @@ export class RankingRepository implements IRankingRepository {
   async getLoser(): Promise<IPlayer | null> {
     try {
       const ranking = await this.listAll();
-      return (
-        ranking.reduce((acc, player) => {
-          return acc.successRate! < player.successRate! ? acc : player;
-        }, ranking[0]) || null
-      );
+
+      const loser =
+        ranking.reduce(
+          (acc, player) => (acc.successRate! < player.successRate! ? acc : player),
+          ranking[0]
+        ) || null;
+
+      console.log('Loser:');
+      console.table(loser);
+      return loser;
     } catch (error) {
       console.error('Error finding loser:', error);
       throw new Error('Error finding loser');
@@ -44,11 +49,16 @@ export class RankingRepository implements IRankingRepository {
   async getWinner(): Promise<IPlayer | null> {
     try {
       const ranking = await this.listAll();
-      return (
-        ranking.reduce((acc, player) => {
-          return acc.successRate! > player.successRate! ? acc : player;
-        }, ranking[0]) || null
-      );
+
+      const winner =
+        ranking.reduce(
+          (acc, player) => (acc.successRate! > player.successRate! ? acc : player),
+          ranking[0]
+        ) || null;
+
+      console.log('Winner:');
+      console.table(winner);
+      return winner;
     } catch (error) {
       console.error('Error finding winner:', error);
       throw new Error('Error finding winner');
@@ -61,7 +71,12 @@ export class RankingRepository implements IRankingRepository {
       if (ranking.length === 0) return 0;
 
       const totalSuccessRate = ranking.reduce((acc, player) => acc + player.successRate!, 0);
-      return totalSuccessRate / ranking.length;
+      const averageSuccessRate = totalSuccessRate / ranking.length;
+
+      const roundedAverageSuccessRate = parseFloat(averageSuccessRate.toFixed(2));
+
+      console.log('Average success rate of all players:', roundedAverageSuccessRate);
+      return roundedAverageSuccessRate;
     } catch (error) {
       console.error('Error calculating average success rate:', error);
       throw new Error('Error calculating average success rate');

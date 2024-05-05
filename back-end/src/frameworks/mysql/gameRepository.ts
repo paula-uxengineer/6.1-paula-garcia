@@ -18,7 +18,7 @@ export class GameRepository implements IGameRepository {
     winner: boolean
   ): Promise<IThrow> {
     try {
-      return await prisma.throw.create({
+      const throws = await prisma.throw.create({
         data: {
           playerId,
           dice1,
@@ -26,6 +26,9 @@ export class GameRepository implements IGameRepository {
           winner
         }
       });
+      console.log('Throws:');
+      console.table(throws);
+      return throws;
     } catch (error) {
       console.error('Error creating throw:', error);
       throw new Error('Error creating throw');
@@ -34,9 +37,10 @@ export class GameRepository implements IGameRepository {
 
   async deleteThrows(playerId: number): Promise<void> {
     try {
-      await prisma.throw.deleteMany({
+      const throws = await prisma.throw.deleteMany({
         where: { playerId }
       });
+      console.log('Throws:', throws);
     } catch (error) {
       console.error('Error deleting throws:', error);
       throw new Error('Error deleting throws');
@@ -53,7 +57,8 @@ export class GameRepository implements IGameRepository {
       if (!player) {
         throw new Error('Player not found');
       }
-
+      console.log('Throws player:', player.id);
+      console.dir(player.throws);
       return player.throws || [];
     } catch (error) {
       console.error('Error finding throws by player id:', error);

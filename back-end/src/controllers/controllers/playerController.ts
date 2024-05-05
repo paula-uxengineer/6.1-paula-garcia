@@ -31,11 +31,11 @@ export class PlayerController {
     }
   }
 
-  async getPlayerThrows(req: Request, res: Response): Promise<void> {
+  async getPlayerThrowsAndRate(req: Request, res: Response): Promise<void> {
     try {
-      const { playerId } = req.params;
+      const { id } = req.params;
       const { throws, successRate } = await this.playerUseCase.findThrowsAndSuccessRateByPlayerId(
-        parseInt(playerId)
+        parseInt(id)
       );
       res.status(200).json({ throws, successRate });
     } catch (error) {

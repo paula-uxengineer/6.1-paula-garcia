@@ -9,28 +9,14 @@ export class RankingUseCase {
   }
 
   async getLoser(): Promise<IPlayer | null> {
-    const ranking = await this.listRanking();
-    return (
-      ranking.reduce((acc, player) => {
-        return acc.successRate! < player.successRate! ? acc : player;
-      }, ranking[0]) || null
-    );
+    return this.rankingRepository.getLoser();
   }
 
   async getWinner(): Promise<IPlayer | null> {
-    const ranking = await this.listRanking();
-    return (
-      ranking.reduce((acc, player) => {
-        return acc.successRate! > player.successRate! ? acc : player;
-      }, ranking[0]) || null
-    );
+    return this.rankingRepository.getWinner();
   }
 
   async getAverageSuccessRate(): Promise<number> {
-    const ranking = await this.listRanking();
-    if (ranking.length === 0) return 0;
-
-    const totalSuccessRate = ranking.reduce((acc, player) => acc + player.successRate!, 0);
-    return totalSuccessRate / ranking.length;
+    return this.rankingRepository.getAverageSuccessRate();
   }
 }

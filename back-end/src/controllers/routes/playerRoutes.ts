@@ -11,7 +11,7 @@ const playerController = new PlayerController(playerUseCase);
 
 playerRouter.post('/', playerController.registerPlayer.bind(playerController));
 playerRouter.put('/:id', playerController.updatePlayerName.bind(playerController));
-playerRouter.get('/', playerController.getPlayerThrows.bind(playerController));
+playerRouter.get('/', playerController.getPlayerThrowsAndRate.bind(playerController));
 playerRouter.delete('/', playerController.deleteAllPlayers.bind(playerController));
 
 export default playerRouter;

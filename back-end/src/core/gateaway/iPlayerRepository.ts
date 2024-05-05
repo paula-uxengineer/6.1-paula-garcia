@@ -6,8 +6,6 @@ export interface IPlayerRepository {
   registerPlayer(name: string): Promise<IPlayer>;
   updatePlayerName(id: number, name: string): Promise<IPlayer | null>;
   findAllPlayers(): Promise<IPlayer[]>;
-  findThrowsAndSuccessRateByPlayerId(
-    playerId: number
-  ): Promise<{ throws: IThrow[]; successRate: number }>;
+  findThrowsByPlayerId(playerId: number): Promise<IThrow[]>;
   deleteAllPlayers(): Promise<void>;
 }

@@ -17,8 +17,8 @@ export class GameController {
 
   async deleteThrows(req: Request, res: Response): Promise<void> {
     try {
-      const { playerId } = req.params;
-      await this.throwUseCase.deleteThrows(parseInt(playerId));
+      const { id } = req.params;
+      await this.throwUseCase.deleteThrows(parseInt(id));
       res.status(204).send();
     } catch (error) {
       console.error('Error deleting throws:', error);
@@ -28,8 +28,8 @@ export class GameController {
 
   async findThrowByPlayerId(req: Request, res: Response): Promise<void> {
     try {
-      const { playerId } = req.params;
-      const throws = await this.throwUseCase.findThrowByPlayerId(parseInt(playerId));
+      const { id } = req.params;
+      const throws = await this.throwUseCase.findThrowByPlayerId(parseInt(id));
       res.status(200).json(throws);
     } catch (error) {
       console.error('Error finding throw by player id:', error);

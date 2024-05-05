@@ -33,7 +33,6 @@ export class PlayerRepository implements IPlayerRepository {
   }
 
   async registerPlayer(name: string): Promise<IPlayer> {
-    console.log('name player:', name);
     return await this.prisma.player.create({
       data: {
         name: name || 'ANONIMOUS'
@@ -49,7 +48,6 @@ export class PlayerRepository implements IPlayerRepository {
           name: name
         }
       });
-      console.log('update name: ', name);
       return updatedPlayer;
     } catch (error) {
       console.error('Error updating player on database:', error);
@@ -70,33 +68,14 @@ export class PlayerRepository implements IPlayerRepository {
     }
   }
 
-  async findThrowsAndSuccessRateByPlayerId(
-    playerId: number
-  ): Promise<{ throws: IThrow[]; successRate: number }> {
+  async findThrowsByPlayerId(playerId: number): Promise<IThrow[]> {
     try {
       const playerThrows = await this.prisma.throw.findMany({
         where: {
-          playerId: playerId // Filtrar por playerId específico
+          playerId: playerId
         }
       });
-
-      const totalThrows = playerThrows.length;
-      let totalWins = 0;
-
-      // Calcular el número total de tiradas ganadoras
-      playerThrows.forEach((throwItem) => {
-        if (throwItem.winner) {
-          totalWins++;
-        }
-      });
-
-      // Calcular la tasa de éxito
-      const successRate = totalThrows > 0 ? (totalWins / totalThrows) * 100 : 0;
-
-      // Redondear la tasa de éxito a dos decimales
-      const roundedSuccessRate = Math.round(successRate * 100) / 100;
-
-      return { throws: playerThrows, successRate: roundedSuccessRate };
+      return playerThrows;
     } catch (error) {
       console.error('Error fetching player throws from the database:', error);
       throw new Error('Error fetching player throws from the database');
@@ -105,7 +84,6 @@ export class PlayerRepository implements IPlayerRepository {
 
   async deleteAllPlayers(): Promise<void> {
     try {
-      // Borra todos los jugadores y sus respectivas tiradas
       await this.prisma.player.deleteMany();
     } catch (error) {
       console.error('Error deleting all players on database:', error);
