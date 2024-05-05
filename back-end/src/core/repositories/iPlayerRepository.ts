@@ -9,4 +9,5 @@ export interface IPlayerRepository {
   findThrowsAndSuccessRateByPlayerId(
     playerId: number
   ): Promise<{ throws: IThrow[]; successRate: number }>;
+  deleteAllPlayers(): Promise<void>;
 }

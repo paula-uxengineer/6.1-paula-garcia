@@ -103,25 +103,15 @@ export class PlayerRepository implements IPlayerRepository {
     }
   }
 
-  // async findThrowsAndSuccessRateByPlayerId(
-  //   playerId: number
-  // ): Promise<{ throws: IThrow[]; successRate: number }> {
-  //   try {
-  //     // Busca todas las tiradas del jugador por su ID
-  //     const throws = await this.prisma.throw.findMany({
-  //       where: { playerId }
-  //     });
-
-  //     // Calcula el porcentaje de éxito del jugador
-  //     const successfulThrows = throws.filter((t) => t.winner);
-  //     const successRate = successfulThrows.length / throws.length;
-
-  //     return { throws, successRate };
-  //   } catch (error) {
-  //     console.error('Error finding throws and success rate by player id:', error);
-  //     throw new Error('Error finding throws and success rate by player id');
-  //   }
-  // }
+  async deleteAllPlayers(): Promise<void> {
+    try {
+      // Borra todos los jugadores y sus respectivas tiradas
+      await this.prisma.player.deleteMany();
+    } catch (error) {
+      console.error('Error deleting all players on database:', error);
+      throw new Error('Error deleting all players on database');
+    }
+  }
 }
 
 // const player = {

@@ -28,13 +28,22 @@ export class PlayerUseCase implements IPlayerUseCase {
     return await this.playerRepository.findThrowsAndSuccessRateByPlayerId(playerId);
   }
 
-  // const playerUseCase = new PlayerUseCase(new PlayerRepository());
-  // playerUseCase
-  //   .getPlayerThrows(14)
-  //   .then((player) => {
-  //     console.log('Player registered:', player);
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error registering player:', error);
-  //   }
+  async deleteAllPlayers(): Promise<void> {
+    try {
+      await this.playerRepository.deleteAllPlayers();
+    } catch (error) {
+      console.error('Error deleting all players:', error);
+      throw new Error('Error deleting all players');
+    }
+  }
 }
+
+// const playerUseCase = new PlayerUseCase(new PlayerRepository());
+// playerUseCase
+//   .getPlayerThrows(14)
+//   .then((player) => {
+//     console.log('Player registered:', player);
+//   })
+//   .catch((error) => {
+//     console.error('Error registering player:', error);
+//   }
