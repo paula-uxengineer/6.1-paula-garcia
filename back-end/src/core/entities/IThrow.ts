@@ -3,5 +3,5 @@ export interface IThrow {
   dice1: number;
   dice2: number;
   winner: boolean;
-  playerId?: number;
+  playerId: number;
 }

@@ -16,22 +16,44 @@ export class GameRepository implements IGameRepository {
     dice1: number,
     dice2: number,
     winner: boolean
-  ): Promise<IThrow> {
+  ): Promise<void> {
     try {
-      const throws = await prisma.throw.create({
+      // Verificar si el jugador existe
+      const existingPlayer = await prisma.player.findUnique({
+        where: { id: playerId },
+        include: { throws: true }
+      });
+
+      if (!existingPlayer) {
+        throw new Error('Player does not exist');
+      }
+
+      // Crear la nueva tirada
+      const createdThrow = await prisma.throw.create({
         data: {
-          playerId,
           dice1,
           dice2,
-          winner
+          winner,
+          player: { connect: { id: playerId } }
         }
       });
-      console.log('Throws:');
-      console.table(throws);
-      return throws;
+
+      // Obtener las tiradas actuales del jugador
+      const currentThrows: IThrow[] = existingPlayer.throws;
+
+      // Añadir la nueva tirada al array de tiradas del jugador
+      const updatedThrows: IThrow[] = [...currentThrows, createdThrow];
+
+      // Actualizar el jugador con las tiradas actualizadas
+      const updatedPlayer = await prisma.player.update({
+        where: { id: playerId },
+        data: { throws: { set: updatedThrows } }
+      });
+
+      console.log('Throw created successfully on database:', createdThrow);
     } catch (error) {
-      console.error('Error creating throw:', error);
-      throw new Error('Error creating throw');
+      console.error('Error creating throw on database:', error);
+      throw new Error('Error creating throw on database');
     }
   }
 
@@ -40,7 +62,6 @@ export class GameRepository implements IGameRepository {
       const throws = await prisma.throw.deleteMany({
         where: { playerId }
       });
-      console.log('Throws:', throws);
     } catch (error) {
       console.error('Error deleting throws:', error);
       throw new Error('Error deleting throws');
@@ -57,8 +78,6 @@ export class GameRepository implements IGameRepository {
       if (!player) {
         throw new Error('Player not found');
       }
-      console.log('Throws player:', player.id);
-      console.dir(player.throws);
       return player.throws || [];
     } catch (error) {
       console.error('Error finding throws by player id:', error);
@@ -67,7 +86,7 @@ export class GameRepository implements IGameRepository {
   }
 }
 
-const gameRepo = new GameRepository();
+//const gameRepo = new GameRepository();
 
 // gameRepo.findThrowByPlayerId(1).then((throws) => {
 //   console.log('Lanzamientos:', throws);

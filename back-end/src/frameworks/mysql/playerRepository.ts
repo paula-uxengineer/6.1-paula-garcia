@@ -1,7 +1,6 @@
 import { PrismaClient } from '../../../prisma/generator/client';
 import { IPlayer } from '../../core/entities/iPlayer';
 import { IPlayerRepository } from '../../core/gateaway/iPlayerRepository';
-import { IThrow } from 'core/entities/iThrow';
 
 export class PlayerRepository implements IPlayerRepository {
   prisma;
@@ -36,6 +35,9 @@ export class PlayerRepository implements IPlayerRepository {
     return await this.prisma.player.create({
       data: {
         name: name || 'ANONIMOUS'
+      },
+      include: {
+        throws: true
       }
     });
   }
@@ -46,6 +48,9 @@ export class PlayerRepository implements IPlayerRepository {
         where: { id },
         data: {
           name: name
+        },
+        include: {
+          throws: true
         }
       });
       return updatedPlayer;
@@ -68,22 +73,10 @@ export class PlayerRepository implements IPlayerRepository {
     }
   }
 
-  async findThrowsByPlayerId(playerId: number): Promise<IThrow[]> {
-    try {
-      const playerThrows = await this.prisma.throw.findMany({
-        where: {
-          playerId: playerId
-        }
-      });
-      return playerThrows;
-    } catch (error) {
-      console.error('Error fetching player throws from the database:', error);
-      throw new Error('Error fetching player throws from the database');
-    }
-  }
-
   async deleteAllPlayers(): Promise<void> {
     try {
+      await this.prisma.throw.deleteMany();
+
       await this.prisma.player.deleteMany();
     } catch (error) {
       console.error('Error deleting all players on database:', error);

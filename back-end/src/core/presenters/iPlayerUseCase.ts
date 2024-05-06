@@ -4,9 +4,10 @@ import { IThrow } from 'core/entities/iThrow';
 interface IPlayerUseCase {
   registerPlayer(name: string): Promise<IPlayer>;
   updatePlayerName(id: number, name: string): Promise<IPlayer | null>;
-  findThrowsAndSuccessRateByPlayerId(
-    playerId: number
-  ): Promise<{ throws: IThrow[]; successRate: number }>;
+  findThrowsAndSuccessRate(playerId: number): Promise<{
+    players: IPlayer[];
+    averageSuccessRate: { playerName: string; successRate: number }[];
+  }>;
 }
 
 export { IPlayerUseCase };

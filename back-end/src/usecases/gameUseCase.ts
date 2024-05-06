@@ -9,7 +9,7 @@ export class GameUseCase implements IGameUseCase {
     dice1: number,
     dice2: number,
     winner: boolean
-  ): Promise<IThrow> {
+  ): Promise<void> {
     return await this.gameRepository.createThrow(playerId, dice1, dice2, winner);
   }
 

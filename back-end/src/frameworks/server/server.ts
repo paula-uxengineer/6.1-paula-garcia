@@ -8,11 +8,11 @@ class Server {
   public app: express.Application;
   public port: number;
 
-  constructor() {
+  constructor(port?: number) {
     this.app = express();
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.port = config.port;
+    this.port = port || config.port;
     this.routes();
   }
 
