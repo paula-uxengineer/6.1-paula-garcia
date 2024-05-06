@@ -12,7 +12,8 @@
     "start": "tsc && node _dist/index.js",
     "dev": "nodemon src/index.ts",
     "test:players": "npx jest --testRegex=src/_tests/apiPlayer.test.ts",
-    "test:games": "npx jest --testRegex=src/_tests/apiGame.test.ts"
+    "test:games": "npx jest --testRegex=src/_tests/apiGame.test.ts",
+    "test:ranking": "npx jest --testRegex=src/_tests/apiRanking.test.ts"
   },
   "keywords": [],
   "author": "Paula Garcia",

@@ -1,3 +1,4 @@
+import { IPlayer } from 'core/entities/iPlayer';
 import { PrismaClient } from '../../../prisma/generator/client';
 import { IThrow } from '../../core/entities/iThrow';
 import { IGameRepository } from 'core/gateaway/iGameRepository';
@@ -18,7 +19,6 @@ export class GameRepository implements IGameRepository {
     winner: boolean
   ): Promise<void> {
     try {
-      // Verificar si el jugador existe
       const existingPlayer = await prisma.player.findUnique({
         where: { id: playerId },
         include: { throws: true }
@@ -28,7 +28,6 @@ export class GameRepository implements IGameRepository {
         throw new Error('Player does not exist');
       }
 
-      // Crear la nueva tirada
       const createdThrow = await prisma.throw.create({
         data: {
           dice1,
@@ -38,13 +37,10 @@ export class GameRepository implements IGameRepository {
         }
       });
 
-      // Obtener las tiradas actuales del jugador
       const currentThrows: IThrow[] = existingPlayer.throws;
 
-      // Añadir la nueva tirada al array de tiradas del jugador
       const updatedThrows: IThrow[] = [...currentThrows, createdThrow];
 
-      // Actualizar el jugador con las tiradas actualizadas
       const updatedPlayer = await prisma.player.update({
         where: { id: playerId },
         data: { throws: { set: updatedThrows } }
@@ -59,7 +55,7 @@ export class GameRepository implements IGameRepository {
 
   async deleteThrows(playerId: number): Promise<void> {
     try {
-      const throws = await prisma.throw.deleteMany({
+      const deletedThrows = await this.prisma.throw.deleteMany({
         where: { playerId }
       });
     } catch (error) {

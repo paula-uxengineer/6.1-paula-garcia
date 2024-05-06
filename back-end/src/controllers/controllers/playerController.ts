@@ -54,10 +54,9 @@ export class PlayerController {
 
   async getPlayerThrowsAndSuccessRate(req: Request, res: Response): Promise<void> {
     try {
-      const { playerId } = req.params;
-      const { players, averageSuccessRate } = await this.playerUseCase.findThrowsAndSuccessRate(
-        parseInt(playerId)
-      );
+      const playerId = parseInt(req.params.playerId);
+      const { players, averageSuccessRate } =
+        await this.playerUseCase.findThrowsAndSuccessRate(playerId);
 
       res.status(200).json({ message: 'Average success rate : ', players, averageSuccessRate });
     } catch (error) {
