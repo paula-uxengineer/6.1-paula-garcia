@@ -58,7 +58,7 @@ export class PlayerController {
       const { players, averageSuccessRate } =
         await this.playerUseCase.findThrowsAndSuccessRate(playerId);
 
-      res.status(200).json({ message: 'Average success rate : ', players, averageSuccessRate });
+      res.status(200).json({ message: 'Average success rate: ', players, averageSuccessRate });
     } catch (error) {
       console.error('Error fetching player throws and average success rates:', error);
       res.status(500).json({ error: 'Error fetching player throws and success rates' });

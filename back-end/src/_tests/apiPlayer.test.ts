@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { PrismaClient } from '../../prisma/generator/client';
+import { Player, PrismaClient } from '../../prisma/generator/client';
 import { Server } from '../frameworks/server/server';
 
 const app = new Server(3200).app;
@@ -56,13 +56,20 @@ describe('Test API/players', () => {
     expect(response.body.updatedPlayer.name).toBe('UpdatedName');
   });
 
-  it('responds with JSON containing throws and success rate', async () => {
-    const playerId = 1;
+  it('GET /players should return players throws and success rates', async () => {
+    //create some players
+    const batchPayload = await prisma.player.createMany({
+      data: [{ name: 'Jugador 1' }, { name: 'Jugador 2' }]
+    });
 
-    const response = await request(app).get(`/players/${playerId}`).expect(200);
+    const playersData = await prisma.player.findMany();
 
-    expect(response.body.message).toEqual('Average success rate : ');
-    expect(response.body.players).toBeDefined();
-    expect(response.body.averageSuccessRate).toBeDefined();
+    const response = await request(app).get(`/players`);
+
+    expect(response.status).toBe(200);
+
+    expect(response.body).toHaveProperty('message');
+    expect(response.body).toHaveProperty('players');
+    expect(response.body.players).toHaveLength(playersData.length);
   });
 });

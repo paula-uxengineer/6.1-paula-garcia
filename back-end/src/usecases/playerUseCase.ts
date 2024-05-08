@@ -1,6 +1,5 @@
 import { IPlayerUseCase } from 'core/presenters/iPlayerUseCase';
 import { IPlayer } from '../core/entities/iPlayer';
-import { IThrow } from 'core/entities/iThrow';
 import { PlayerRepository } from 'frameworks/mysql/playerRepository';
 
 export class PlayerUseCase implements IPlayerUseCase {
@@ -26,9 +25,7 @@ export class PlayerUseCase implements IPlayerUseCase {
     return await this.playerRepository.deleteAllPlayers();
   }
 
-  async findThrowsAndSuccessRate(
-    playerId: number
-  ): Promise<{
+  async findThrowsAndSuccessRate(playerId: number): Promise<{
     players: IPlayer[];
     averageSuccessRate: { playerName: string; successRate: number }[];
   }> {

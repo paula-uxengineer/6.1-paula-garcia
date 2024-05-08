@@ -2,13 +2,14 @@ import request from 'supertest';
 import { PrismaClient } from '../../prisma/generator/client';
 import { Server } from '../frameworks/server/server';
 
-const app = new Server(3400).app;
+const app = new Server(3200).app;
 const prisma = new PrismaClient();
 
 describe('Test API/games', () => {
-  beforeAll(() => {
+  beforeAll(async () => {
     app.listen();
   });
+
   afterAll(async () => {
     try {
       await prisma.throw.deleteMany();
@@ -19,26 +20,23 @@ describe('Test API/games', () => {
       await prisma.$disconnect();
     }
   });
-  // it('should create a new throw', async () => {
-  //   const playerId = 1;
-  //   const dice1 = 4;
-  //   const dice2 = 6;
-  //   const winner = true;
 
-  //   const response = await request(app)
-  //     .post(`/games/${playerId}`)
-  //     .send({ dice1, dice2, winner })
-  //     .expect('Content-Type', /json/)
-  //     .expect(201);
+  it('should create a throw', async () => {
+    const createPlayer = await prisma.player.create({
+      data: {
+        name: 'TestPlayer'
+      },
+      include: {
+        throws: true
+      }
+    });
+    const playerId = createPlayer.id;
 
-  //   expect(response.body.message).toEqual('Throw created successfully');
+    const res = await request(app).post(`/games/${playerId}`);
 
-  //   const player = await prisma.player.findUnique({
-  //     where: { id: playerId },
-  //     include: { throws: true }
-  //   });
-  //   expect(player.throws.length).toEqual(1);
-  // });
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ message: 'Throw created successfully' });
+  });
 
   it('should delete throws for a player', async () => {
     const createPlayer = await prisma.player.create({
