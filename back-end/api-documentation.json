@@ -1,0 +1,265 @@
+{
+    "info": {
+        "_postman_id": "2ae36661-6cbf-4bb7-92eb-acdb1769cec0",
+        "name": "API Dice Game",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "/players",
+            "item": [
+                {
+                    "name": "database-manager",
+                    "item": [
+                        {
+                            "name": "Create a new Player",
+                            "request": {
+                                "method": "POST",
+                                "url": {
+                                    "raw": "http://localhost:3000/players/database",
+                                    "path": [
+                                        "players",
+                                        "database"
+                                    ],
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000"
+                                },
+                                "body": {
+                                    "mode": "raw",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    },
+                                    "raw": "  { \n  \"name\": \"Bart\",\n  \"creationDate\": \"2024-05-06T12:00:00Z\",\n  \"successRate\": 0.0,\n  \"throws\": [\n    {\n      \"dice1\": 4,\n      \"dice2\": 3,\n      \"winner\": true\n    },\n    {\n      \"dice1\": 2,\n      \"dice2\": 1,\n      \"winner\": false\n    }\n  ]\n  }"
+                                }
+                            }
+                        },
+                        {
+                            "name": "Get all players",
+                            "request": {
+                                "method": "GET",
+                                "url": {
+                                    "raw": "http://localhost:3000/players/database",
+                                    "path": [
+                                        "players",
+                                        "database"
+                                    ],
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000"
+                                }
+                            }
+                        },
+                        {
+                            "name": "Delete all players",
+                            "request": {
+                                "method": "DELETE",
+                                "url": {
+                                    "raw": "http://localhost:3000/players/database",
+                                    "path": [
+                                        "players",
+                                        "database"
+                                    ],
+                                    "protocol": "http",
+                                    "host": [
+                                        "localhost"
+                                    ],
+                                    "port": "3000"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Register name player",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/players",
+                            "path": [
+                                "players"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Moe\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Get all players and succcess rate",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/players/",
+                            "path": [
+                                "players"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                },
+                {
+                    "name": "Rename a player",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "localhost:3000/players/43",
+                            "path": [
+                                "players",
+                                "43"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"ANONIMOUS\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "/games",
+            "item": [
+                {
+                    "name": "Create a new throw by player id",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:3000/games/157",
+                            "path": [
+                                "games",
+                                "157"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete all throws by player id",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "localhost:3000/games/79",
+                            "path": [
+                                "games",
+                                "79"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                },
+                {
+                    "name": "Find throws by specific player",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:3000/games/64",
+                            "path": [
+                                "games",
+                                "64"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "/ranking",
+            "item": [
+                {
+                    "name": "Get the player with the lowest success rate",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/ranking/loser",
+                            "path": [
+                                "ranking",
+                                "loser"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                },
+                {
+                    "name": "Get the player with the highest success rate",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/ranking/winner",
+                            "path": [
+                                "ranking",
+                                "winner"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                },
+                {
+                    "name": "Get the average success rate of all players",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "http://localhost:3000/ranking/average-success-rate",
+                            "path": [
+                                "ranking",
+                                "average-success-rate"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
