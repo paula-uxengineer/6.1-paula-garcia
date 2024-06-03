@@ -11,15 +11,3 @@ services:
       - '3306:3306'
     volumes:
       - ./dockerCompose/mysql:/var/lib/mysql
-
-  mongodb:
-    image: mongo:latest
-    container_name: mongo-db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: user
-      MONGO_INITDB_ROOT_PASSWORD: 123456789
-      MONGO_INITDB_DATABASE: my-mongo-db
-    ports:
-      - '27017:27017'
-    volumes:
-      - ./dockerCompose/mongodb:/data/db
