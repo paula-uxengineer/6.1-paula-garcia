@@ -38,7 +38,13 @@ git clone https://github.com/your-username/dice-game-api.git
 cd dice-game-api
 ```
 
-3. Install the project dependencies:
+3. Navigate to back-end directory:
+
+```bash
+cd back-end
+```
+
+4. Install the project dependencies:
 
 ```bash
 npm install
@@ -51,7 +57,7 @@ Copy the .env.example file and rename it to .env. Make sure to configure the env
 1. Start the MySQL database using Docker:
 
 ```bash
-docker-compose up -d
+npm run docker
 ```
 
 2. Start the application:
